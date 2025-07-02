@@ -10,10 +10,10 @@ function App() {
     WebApp.expand();
   }, []);
 
-  const handleClick = () => {
-    WebApp.sendData("hello sn0weagle data sent");
-    WebApp.close();
-  };
+  // const handleClick = () => {
+  //   WebApp.sendData("hello sn0weagle data sent");
+  //   WebApp.close();
+  // };
 
   return (
     <div className="app p-8" style={{ backgroundColor: "rgba(33,28,32,255)" }}>

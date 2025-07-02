@@ -2,11 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { type EmblaOptionsType } from 'embla-carousel'
 import useEmblaCarousel from 'embla-carousel-react'
 import AutoScroll from 'embla-carousel-auto-scroll'
-import {
-  NextButton,
-  PrevButton,
-  usePrevNextButtons
-} from './EmblaCarouselArrowButtons'
+
 import { DotButton, useDotButton } from './EmblaCarouselDotButtons'
 
 type PropType = {
@@ -18,49 +14,49 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [
     AutoScroll({ playOnInit: false })
   ])
-  const [isPlaying, setIsPlaying] = useState(true)
+  // const [isPlaying, setIsPlaying] = useState(true)
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi)
 
-  const onButtonAutoplayClick = useCallback(
-    (callback: () => void) => {
-      const autoScroll = emblaApi?.plugins()?.autoScroll
-      if (!autoScroll) return
+  // const onButtonAutoplayClick = useCallback(
+  //   (callback: () => void) => {
+  //     const autoScroll = emblaApi?.plugins()?.autoScroll
+  //     if (!autoScroll) return
 
-      const resetOrStop =
-        autoScroll.options.stopOnInteraction === false
-          ? autoScroll.reset
-          : autoScroll.stop
+  //     const resetOrStop =
+  //       autoScroll.options.stopOnInteraction === false
+  //         ? autoScroll.reset
+  //         : autoScroll.stop
 
-      resetOrStop()
-      callback()
-    },
-    [emblaApi]
-  )
+  //     resetOrStop()
+  //     callback()
+  //   },
+  //   [emblaApi]
+  // )
 
 
-  const toggleAutoplay = useCallback(() => {
-    const autoScroll = emblaApi?.plugins()?.autoScroll
-    if (!autoScroll) return
+  // const toggleAutoplay = useCallback(() => {
+  //   const autoScroll = emblaApi?.plugins()?.autoScroll
+  //   if (!autoScroll) return
 
-    const playOrStop = autoScroll.isPlaying()
-      ? autoScroll.stop
-      : autoScroll.play
-    playOrStop()
-  }, [emblaApi])
+  //   const playOrStop = autoScroll.isPlaying()
+  //     ? autoScroll.stop
+  //     : autoScroll.play
+  //   playOrStop()
+  // }, [emblaApi])
 
-  useEffect(() => {
-    const autoScroll = emblaApi?.plugins()?.autoScroll
-    if (!autoScroll) return
+  // useEffect(() => {
+  //   const autoScroll = emblaApi?.plugins()?.autoScroll
+  //   if (!autoScroll) return
 
-    setIsPlaying(autoScroll.isPlaying())
-    emblaApi
-      .on('autoScroll:play', () => setIsPlaying(true))
-      .on('autoScroll:stop', () => setIsPlaying(false))
-      .on('reInit', () => setIsPlaying(autoScroll.isPlaying()))
+  //   setIsPlaying(autoScroll.isPlaying())
+  //   emblaApi
+  //     .on('autoScroll:play', () => setIsPlaying(true))
+  //     .on('autoScroll:stop', () => setIsPlaying(false))
+  //     .on('reInit', () => setIsPlaying(autoScroll.isPlaying()))
 
-  }, [emblaApi])
+  // }, [emblaApi])
 
   return (
     <section className="embla">
